@@ -31,11 +31,12 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: Build Docker image
+    - name: Build and run Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
         file: ./Dockerfile
+        load: true          # <-- Important! Loads the image into local Docker
         push: false
         tags: myfirstapp:latest
 
