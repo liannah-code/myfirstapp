@@ -1,4 +1,4 @@
-name: Python CI
+name: Python CI with Security Scan
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +22,11 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install bandit
+
+    - name: Run security scan (Bandit)
+      run: |
+        bandit -r .
 
     - name: Run Python app
       run: |
