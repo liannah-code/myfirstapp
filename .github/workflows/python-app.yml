@@ -34,9 +34,10 @@ jobs:
     - name: Build Docker image
       uses: docker/build-push-action@v5
       with:
+        context: .
+        file: ./Dockerfile
         push: false
         tags: myfirstapp:latest
 
     - name: Run Docker container
-      run: |
-        docker run myfirstapp
+      run: docker run myfirstapp
