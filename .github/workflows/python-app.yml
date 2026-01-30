@@ -28,9 +28,14 @@ jobs:
       run: |
         bandit -r .
 
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
     - name: Build Docker image
-      run: |
-        docker build -t myfirstapp .
+      uses: docker/build-push-action@v5
+      with:
+        push: false
+        tags: myfirstapp:latest
 
     - name: Run Docker container
       run: |
