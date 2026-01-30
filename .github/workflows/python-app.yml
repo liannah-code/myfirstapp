@@ -1,4 +1,4 @@
-name: Python CI with Security Scan
+name: Python Docker CI
 
 on:
   push:
@@ -28,6 +28,10 @@ jobs:
       run: |
         bandit -r .
 
-    - name: Run Python app
+    - name: Build Docker image
       run: |
-        python app.py
+        docker build -t myfirstapp .
+
+    - name: Run Docker container
+      run: |
+        docker run myfirstapp
